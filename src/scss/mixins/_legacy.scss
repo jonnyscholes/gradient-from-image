@@ -1,0 +1,73 @@
+// Everything in this folder is from our older scss structure. Eventually they should
+// either be move to a separate file or depreciated
+
+
+@function strip-units($number) {
+	@return $number / ($number * 0 + 1);
+}
+
+@mixin responsive-font-size($size) {
+	@include font-size($size);
+	@each $value in (1.3, 1.5, 2.0, 3.0) {
+		@include hidpi($value) {
+			@include font-size(#{round(strip-units($size/$value))}px);
+		}
+	}
+}
+
+@mixin opacity($opacity) {
+	filter: alpha(opacity=$opacity*100); // IE6-IE8
+	opacity: $opacity; // Chrome 4+, FF2+, Saf3.1+, Opera 9+, IE9, iOS 3.2+, Android 2.1+
+}
+
+@mixin respond-to($media, $fallback: null) {
+	@if $fallback {
+		@content;
+	} @else {
+		@media #{$media} {
+			@content;
+		}
+	}
+}
+
+@mixin vertical-align() {
+	&:before {
+		content: '';
+		display: inline-block;
+		height: 100%;
+		vertical-align: middle;
+		margin-right: -0.25em; /* Adjusts for spacing */
+	}
+}
+
+@mixin font-smoothing() {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+@mixin font-size($size) {
+	font-size: $size;
+}
+
+@mixin line-height($size) {
+	line-height: $size;
+}
+
+@mixin icon($char, $font, $size: 1rem) {
+	@include font-size($size);
+	font-family: $font;
+	font-style: normal;
+	font-weight: normal;
+	speak: none;
+	display: inline-block;
+	text-decoration: inherit;
+	margin-right: .2em;
+	text-align: center;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1em;
+	content: $char;
+	vertical-align: middle;
+	width: $size;
+	height: $size;
+}

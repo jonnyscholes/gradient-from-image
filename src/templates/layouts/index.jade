@@ -1,0 +1,34 @@
+extends ../layout
+
+block content
+	.header(data-bind="attr: {style: gradientString}")
+		.header--item
+			h2.title Choose an image...
+			a.btn.btn__file(href="#")
+				| Choose file
+				input(type="file", data-bind="files: fileLoaded")		
+		.controls.header--item
+			h2.title Some options...
+			label(for="divisor") 
+				| Divisor: 
+				span(data-bind="text: divisor")
+			input(type="range", id="divisor", min="1", data-bind="value: divisor, attr: {max: lineMax}")
+			
+			label(for="line") 
+				| Line: 
+				span(data-bind="text: currentLine")
+			input(type="range", id="line", min="0", data-bind="value: currentLine, attr: {max: lineMax}")
+
+		.header--item
+			.preview
+				span.preview--marker(data-bind="attr: {style: 'left: '+markerPosition()+';'}")
+				img.preview--image(data-bind="attr: {src: imageDataUrl}")
+
+		.header--item
+			h2.title Get a wicked gradient...
+			.btn-group 
+				a.btn(href="#", data-bind="click: toggleCSS") Toggle CSS
+
+	.fullGradient(data-bind="attr: {style: fullGradientString}")
+	.finalGradient(data-bind="attr: {style: gradientString}")
+		.finalGradient--css(data-bind="text: gradientString, visible: showCSS()")

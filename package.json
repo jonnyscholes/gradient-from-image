@@ -1,0 +1,43 @@
+{
+  "name": "gradient-from-image",
+  "version": "0.0.1",
+  "devDependencies": {
+    "browserify": "~8.0.3 ",
+    "browserify-shim": "~3.8.2",
+    "connect": "~2.14.3",
+    "es6ify": "~1.6.0",
+    "faucet": "0.0.1",
+    "gulp": "~3.6.0",
+    "gulp-autoprefixer": "~1.0.1",
+    "gulp-changed": "~0.3.0",
+    "gulp-connect": "~2.0.6",
+    "gulp-filter": "^0.3.1",
+    "gulp-imagemin": "~0.1.5",
+    "gulp-jade": "^0.4.2",
+    "gulp-jshint": "~1.8.5",
+    "gulp-minify-css": "^0.3.11",
+    "gulp-notify": "~1.2.4",
+    "gulp-open": "~0.2.8",
+    "gulp-pixrem": "~0.1.1",
+    "gulp-sass": "*",
+    "gulp-size": "1.1.0",
+    "gulp-sourcemaps": "~1.2.2",
+    "gulp-uglify": "^0.2.1",
+    "gulp-util": "~2.2.14",
+    "jshint-stylish": "~1.0.0",
+    "minimist": "^1.1.0",
+    "pretty-hrtime": "~0.2.1",
+    "tape": "^3.0.3",
+    "vinyl-buffer": "~1.0.0",
+    "vinyl-source-stream": "~0.1.1"
+  },
+  "dependencies": {
+    "knockout": "^3.3.0"
+  },
+  "scripts": {
+    "start": "gulp develop",
+    "startie8": "gulp develop --supportIE8=true",
+    "compile": "gulp compile",
+    "compileie8": "gulp compile --supportIE8=true"
+  }
+}

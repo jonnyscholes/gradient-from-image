@@ -1,0 +1,122 @@
+/* ---------------------------------------------------------------------------
+
+	Content-first media queries
+	===========================
+
+	Taken from Dominic Whittle with permission by Jonny Scholes
+
+	@TODO make these media query wrappers work as described.
+
+	from( n ) { ... }
+		Styles elements from (and inclusive) of n.
+		Useful for adding complexity as viewport size increases.
+
+	to( n ) { ... }
+		Styles elements up to but not including n.
+		Effectively, max-width n-1
+		Useful for the occasional small screen only style.
+
+	n must be unitless CSS pixels; e.g., 768 or 1024
+	It gets converted to em.
+
+	from-to( x, y ) { ... }
+
+
+	All take an additional $legacy parameter.
+
+
+	// Examples
+
+	@include to( $BreakpointSmall ) {
+		// max-width( 320/16em )
+		.nav {}
+	}
+
+	@include from-to( $BreakpointMedium, 1280, legacy ) {
+		// min-width( 320/16em ), max-width( 1280-1  )
+		.nav {}
+	}
+
+	@include from( 1280 ) {
+		// min-width 1280
+		.nav {}
+	}
+--------------------------------------------------------------------------- */
+
+
+// Use like normal media queries and they will just work.
+// Use unitless values -- 600 instead of 600px -- and media queries will
+// be converted and set in ems instead. Note that this assumes that html
+// is set to font-size: 100%; and uses multiples of 16 as the default when
+// converting to em.
+
+
+
+$old-ie: false !default;
+$base-font-size: 16 !default;
+
+
+
+// Inclusive of the value and above.
+@mixin from( $value, $legacy: null ) {
+	@if ( unitless($value) ){
+		$value: $value / $base-font-size * 1em; // Convert to em as a default:
+	}
+	@if $old-ie {
+		@if $legacy {
+			@content;
+		}
+	} @else {
+		@media screen and (min-width: $value) {
+			@content;
+		}
+	}
+}
+
+
+
+// Up to but not inclusive (1px less) the value:
+@mixin to( $value, $legacy: null ) {
+	@if ( unitless($value) ){
+		$value: $value - 1;
+		$value: $value / $base-font-size * 1em; // Convert to em as a default:
+	}
+	@if $old-ie {
+		@if $legacy {
+			@content;
+		}
+	} @else {
+		@media screen and ( max-width: $value ) {
+			@content;
+		}
+	}
+}
+
+
+@mixin from-to( $min, $max, $legacy: null ) {
+	@if ( unitless($min) ){
+		$min: $min / $base-font-size * 1em; // Convert to em as a default:
+	}
+	@if ( unitless($max) ){
+		$max: $max - 1;
+		$max: $max / $base-font-size * 1em;
+	}
+
+	@if $old-ie {
+		@if $legacy {
+			@content;
+		}
+	} @else {
+		@media screen and (min-width: $min) and (max-width: $max) {
+			@content;
+		}
+	}
+}
+
+
+// IE only
+@mixin legacy {
+	@if $old-ie {
+		@content;
+	}
+}

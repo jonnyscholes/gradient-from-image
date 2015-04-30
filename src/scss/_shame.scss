@@ -1,0 +1,142 @@
+/* ------------------------------------------------------------------------------------------------
+
+Shame
+=====
+
+1. 	If it’s a hack, it goes in shame.css.
+2. 	Document all hacks fully:
+  a. 	What part of the codebase does it relate to?
+  b. 	Why was this needed?
+  c. 	How does this fix it?
+  d. 	How might you fix it properly, given more time?
+3. 	Do not blame the developer; if they explained why they had to do it then their reasons are
+probably (hopefully) valid.
+4. 	Try and clean shame.css up when you have some down time.
+
+via: http://csswizardry.com/2013/04/shame-css/
+
+------------------------------------------------------------------------------------------------ */
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+label {
+	display: block;
+}
+
+.title {
+	margin: 0 0 .8rem 0;
+}
+
+.btn {
+	transition: all 300ms ease-in-out;
+	padding: .4rem .8rem;
+	text-decoration: none;
+	background: #eee;
+	display: inline-block;
+	position: relative;
+	&:hover {
+		background: #ddd;
+	}
+	&__file {
+		input[type=file] {
+			position: absolute;
+			top: 0;
+			right: 0;
+			min-width: 100%;
+			min-height: 100%;
+			font-size: 100px;
+			text-align: right;
+			filter: alpha(opacity=0);
+			opacity: 0;
+			outline: none;
+			background: white;
+			cursor: inherit;
+			display: block;
+		}
+	}
+}
+
+.btn-group {
+	.btn {
+		margin-right: .5rem;
+	}
+}
+
+.header {
+	padding: 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: align-items;
+	width: 100%;
+	height: 40vh;
+	border-bottom: 5px solid white;
+	&--item {
+		background: rgba(white, 0.7);
+		overflow: hidden;
+		padding: 1rem;
+		width: 25vw;
+	}
+}
+	.controls {
+		input {
+			width: 100%;
+		}
+	}
+	.preview {
+		width: 100%;
+		height: 100%;
+		position: relative;
+		&--marker {
+			position: absolute;
+			top: -5%;
+			left: 0;
+			width: 1px; 
+			height: 110%;
+			background: black;
+		}
+		&--image {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+	}
+	.finalGradient {
+		padding: 1rem;
+		width: 100%;
+		min-height: 50vh;
+		&--css {
+			padding: 1rem;
+			background: rgba(white, 0.7);
+			width: 100%;
+			word-break: break-all;
+		}
+	}
+
+	.fullGradient {
+		width: 100%;
+		height: 10vh;
+		border-bottom: 5px solid white;
+	}
+
+
+// .finalGradient--codes.code-list(data-bind="foreach: filteredColumnColors")
+// 	span.code-list--single(data-bind="text: $data")
+.code-list {
+	font-size: 0.3rem;
+	justify-content: space-between;
+	display: flex;
+	width: 100%;
+
+	&--single {
+		
+	}
+}
+
